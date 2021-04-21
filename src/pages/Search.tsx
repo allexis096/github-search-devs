@@ -1,5 +1,5 @@
 import React, { FormEvent } from 'react';
-import { Box, Button, Flex, Icon, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Icon, Input, Text } from '@chakra-ui/react';
 import { FiSearch } from 'react-icons/fi';
 
 export function Search() {
@@ -9,26 +9,12 @@ export function Search() {
 
   return (
     <Flex w="100vw" h="100vh" align="center" justify="center">
-      <Flex
-        as="form"
-        maxWidth={400}
-        w="100%"
-        direction="column"
-        align="center"
-      >
-        <Text
-          color="white.700"
-          fontStyle="italic"
-          fontSize="30"
-        >
+      <Flex as="form" maxWidth={400} w="100%" direction="column" align="center">
+        <Text color="white.700" fontStyle="italic" fontSize="30">
           Search Devs
         </Text>
-        <Box
-          display="flex"
-          gridGap="1"
-          w="100%"
-        >
-          <Input 
+        <Box display="flex" gridGap="1" w="100%">
+          <Input
             name="user"
             placeholder="Type the username here..."
             _placeholder={{ fontStyle: 'italic' }}
@@ -39,7 +25,7 @@ export function Search() {
             fontStyle="italic"
             fontWeight="light"
             _hover={{
-              bg: 'white.700'
+              bg: 'white.700',
             }}
             type="submit"
             onClick={handleSubmit}
