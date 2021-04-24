@@ -1,7 +1,9 @@
 import React from 'react';
-import { Box, Flex, Icon, Text } from '@chakra-ui/react';
+import { Icon } from '@chakra-ui/react';
 import { IoIosStarOutline } from 'react-icons/io';
 import { GoPrimitiveDot } from 'react-icons/go';
+import { MotionBox, MotionText } from '../utils/MotionContainers';
+import { variants } from '../utils/motionVariants';
 
 type RepositoryProps = {
   repository: {
@@ -14,7 +16,8 @@ type RepositoryProps = {
 
 export function Repository({ repository }: RepositoryProps) {
   return (
-    <Flex
+    <MotionBox
+      display="flex"
       mt="5"
       ml="10"
       flexDirection="column"
@@ -22,28 +25,32 @@ export function Repository({ repository }: RepositoryProps) {
       fontWeight="light"
       textAlign="justify"
       color="white.700"
+      variants={variants}
     >
-      <Text>{repository.name}</Text>
-      <Text mr="5">{repository.description}</Text>
+      <MotionText variants={variants}>{repository.name}</MotionText>
+      <MotionText mr="5" variants={variants}>
+        {repository.description}
+      </MotionText>
 
-      <Box
+      <MotionBox
         borderBottom="1px solid #ECEFF4"
         pb="5"
         display="flex"
         flexDirection="row"
         mt="5"
         color="white.500"
+        variants={variants}
       >
-        <Flex align="center" justify="center">
+        <MotionBox display="flex" alignItems="center" justifyContent="center">
           <Icon as={IoIosStarOutline} />
           {repository.stars}
-        </Flex>
+        </MotionBox>
 
-        <Flex align="center" justify="center" ml="5">
+        <MotionBox display="flex" alignItems="center" justifyContent="center" ml="5">
           <Icon as={GoPrimitiveDot} />
           {repository.date}
-        </Flex>
-      </Box>
-    </Flex>
+        </MotionBox>
+      </MotionBox>
+    </MotionBox>
   );
 }

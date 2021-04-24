@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Button, Flex, Image, Text } from '@chakra-ui/react';
+import React, { FormEvent } from 'react';
+import { useHistory } from 'react-router';
 
 import { IoIosStarOutline } from 'react-icons/io';
 import { AiOutlineHeart, AiOutlineMail, AiOutlineLink } from 'react-icons/ai';
@@ -11,74 +11,150 @@ import { FiTwitter } from 'react-icons/fi';
 import { ProfileStats } from '../components/ProfileStats';
 import { ProfileInfo } from '../components/ProfileInfo';
 import { Repository } from '../components/Repository';
+import { MotionBox, MotionImage, MotionText } from '../utils/MotionContainers';
+import { Button } from '@chakra-ui/button';
+import { variants } from '../utils/motionVariants';
 
 export function Profile() {
-  const repository = {
-    name: 'Repository Name',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt congue ligula in rutrum. Morbi nec lacus condimentum, hendrerit mi eu, feugiat.',
-    stars: '100 stars',
-    date: 'Updated 30 days ago',
-  };
+  const history = useHistory();
 
-  const repository2 = {
-    name: 'Repository Name',
-    description:
-      'Lorem ipsum dolor sit amasdasdasdasdasdasdet, consecteturasdasdasdasdasd adipiscing elit. Sed tincidunt congue ligula in rutrum. Morbi nec lacus condimentum, hendrerit mi eu, feugiat.',
-    stars: '100 stars',
-    date: 'Updated 30 days ago',
-  };
+  const arr = [
+    {
+      repository: {
+        name: 'Repository Name',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt congue ligula in rutrum. Morbi nec lacus condimentum, hendrerit mi eu, feugiat.',
+        stars: '100 stars',
+        date: 'Updated 30 days ago',
+      },
+    },
+    {
+      repository: {
+        name: 'Repository Name',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt congue ligula in rutrum. Morbi nec lacus condimentum, hendrerit mi eu, feugiat.',
+        stars: '100 stars',
+        date: 'Updated 30 days ago',
+      },
+    },
+    {
+      repository: {
+        name: 'Repository Name',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt congue ligula in rutrum. Morbi nec lacus condimentum, hendrerit mi eu, feugiat.',
+        stars: '100 stars',
+        date: 'Updated 30 days ago',
+      },
+    },
+    {
+      repository: {
+        name: 'Repository Name',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt congue ligula in rutrum. Morbi nec lacus condimentum, hendrerit mi eu, feugiat.',
+        stars: '100 stars',
+        date: 'Updated 30 days ago',
+      },
+    },
+  ];
+
+  function handleBack(event: FormEvent) {
+    event.preventDefault();
+
+    history.push('/');
+  }
 
   return (
-    <Flex w="100vw" h="100vh">
-      <Flex bg="white.700" w="30%" flexDirection="column" justifyContent="space-around">
-        <Box display="flex" mt="20px" alignItems="center" justifyContent="center">
-          <Image src="http://github.com/allexis096.png" w="175" h="175" />
-        </Box>
+    <MotionBox
+      display="flex"
+      w="100vw"
+      h="100vh"
+      initial="hidden"
+      animate="show"
+      variants={variants}
+    >
+      <MotionBox
+        display="flex"
+        bg="white.700"
+        w="30%"
+        flexDirection="column"
+        justifyContent="space-around"
+        variants={variants}
+      >
+        <MotionBox
+          display="flex"
+          mt="20px"
+          alignItems="center"
+          justifyContent="center"
+          variants={variants}
+        >
+          <MotionImage src="http://github.com/allexis096.png" w="175" h="175" variants={variants} />
+        </MotionBox>
 
-        <Box p="4">
-          <Text fontSize="x-large" color="white.200" fontWeight="light" fontStyle="italic">
+        <MotionBox p="4">
+          <MotionText
+            fontSize="x-large"
+            color="white.200"
+            fontWeight="light"
+            fontStyle="italic"
+            variants={variants}
+          >
             Allexis Figueiredo
-          </Text>
-          <Text fontSize="large" color="white.200" fontWeight="light" fontStyle="italic">
+          </MotionText>
+          <MotionText
+            fontSize="large"
+            color="white.200"
+            fontWeight="light"
+            fontStyle="italic"
+            variants={variants}
+          >
             @allexis096
-          </Text>
+          </MotionText>
 
-          <Text fontSize="sm" textAlign="justify" mt="2" color="white.500">
+          <MotionText
+            fontSize="sm"
+            textAlign="justify"
+            mt="2"
+            color="white.500"
+            variants={variants}
+          >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt congue ligula in
             rutrum. Morbi nec lacus condimentum, hendrerit mi eu, feugiat.
-          </Text>
+          </MotionText>
 
-          <Flex>
+          <MotionBox display="flex" variants={variants}>
             <ProfileStats icon={MdPeopleOutline} title="200 followers" />
             <ProfileStats icon={AiOutlineHeart} title="200 following" />
             <ProfileStats icon={IoIosStarOutline} title="200 stars" />
-          </Flex>
+          </MotionBox>
 
-          <Flex flexDirection="column">
+          <MotionBox display="flex" flexDirection="column" variants={variants}>
             <ProfileInfo icon={BiBuilding} title="organization" />
             <ProfileInfo icon={GoLocation} title="location" />
             <ProfileInfo icon={AiOutlineMail} title="email" />
             <ProfileInfo icon={AiOutlineLink} title="www.mywebsite.com" />
             <ProfileInfo icon={FiTwitter} title="@myTwitter" />
-          </Flex>
-        </Box>
+          </MotionBox>
+        </MotionBox>
 
-        <Box display="flex" justifyContent="center">
-          <Button mt="-5" w="150px" color="white.700" fontStyle="italic" fontWeight="light">
+        <MotionBox display="flex" justifyContent="center" variants={variants}>
+          <Button
+            mt="-5"
+            w="150px"
+            color="white.700"
+            fontStyle="italic"
+            fontWeight="light"
+            onClick={handleBack}
+          >
             Voltar
           </Button>
-        </Box>
-      </Flex>
+        </MotionBox>
+      </MotionBox>
 
-      <Flex flexDirection="column" overflowY="auto">
-        <Repository repository={repository} />
-        <Repository repository={repository2} />
-        <Repository repository={repository2} />
-        <Repository repository={repository} />
-        <Repository repository={repository2} />
-        <Repository repository={repository} />
-      </Flex>
-    </Flex>
+      <MotionBox display="flex" flexDirection="column" overflowY="auto" variants={variants}>
+        {arr.map((arrr) => (
+          <Repository key={arrr.repository.name} repository={arrr.repository} />
+        ))}
+      </MotionBox>
+    </MotionBox>
   );
 }

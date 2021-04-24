@@ -1,6 +1,8 @@
 import React from 'react';
-import { Flex, Icon, Text } from '@chakra-ui/react';
+import { Icon, Text } from '@chakra-ui/react';
 import { IconType } from 'react-icons/lib';
+import { MotionBox } from '../utils/MotionContainers';
+import { variants } from '../utils/motionVariants';
 
 type ProfileInfoProps = {
   icon: IconType;
@@ -9,11 +11,11 @@ type ProfileInfoProps = {
 
 export function ProfileInfo({ icon: as, title }: ProfileInfoProps) {
   return (
-    <Flex mt="2" mr="2" align="center">
+    <MotionBox display="flex" mt="2" mr="2" alignItems="center" variants={variants}>
       <Icon as={as} fontSize={22} color="white.200" mr="1" />
       <Text color="white.200" fontWeight="light" fontStyle="italic" fontSize="xl">
         {title}
       </Text>
-    </Flex>
+    </MotionBox>
   );
 }
