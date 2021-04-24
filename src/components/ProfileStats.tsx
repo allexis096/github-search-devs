@@ -1,15 +1,21 @@
 import React from 'react';
-import { Icon, Text } from '@chakra-ui/react';
+import { Icon, Link, Text } from '@chakra-ui/react';
 import { IconType } from 'react-icons/lib';
 import { MotionBox } from '../utils/MotionContainers';
 import { variants } from '../utils/motionVariants';
+import { useUser } from '../hooks/user';
 
 type ProfileStatsProps = {
   icon: IconType;
+  name: number;
   title: string;
 };
 
-export function ProfileStats({ icon: as, title }: ProfileStatsProps) {
+export function ProfileStats({ icon: as, name, title }: ProfileStatsProps) {
+  const {
+    githubUser: { user },
+  } = useUser();
+
   return (
     <MotionBox
       display="flex"
@@ -20,9 +26,11 @@ export function ProfileStats({ icon: as, title }: ProfileStatsProps) {
       variants={variants}
     >
       <Icon as={as} fontSize={18} color="white.200" mr="1" />
-      <Text color="white.200" fontWeight="light" fontSize="smaller">
-        {title}
-      </Text>
+      <Link href={`https://github.com/${user.login}?tab=${title}`} isExternal>
+        <Text color="white.200" fontWeight="light" fontSize="smaller">
+          {`${name} ${title}`}
+        </Text>
+      </Link>
     </MotionBox>
   );
 }

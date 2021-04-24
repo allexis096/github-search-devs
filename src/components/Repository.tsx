@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Link } from '@chakra-ui/react';
+import { Icon, Link, useColorModeValue } from '@chakra-ui/react';
 import { IoIosStarOutline } from 'react-icons/io';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { MotionBox, MotionText } from '../utils/MotionContainers';
@@ -17,6 +17,8 @@ export function Repository({ name, description, stars, date }: RepositoryProps) 
   const {
     githubUser: { user },
   } = useUser();
+  const color = useColorModeValue('white.700', 'white.400');
+  const hover = useColorModeValue('white.400', 'white.700');
 
   return (
     <Link
@@ -28,14 +30,16 @@ export function Repository({ name, description, stars, date }: RepositoryProps) 
         display="flex"
         mt="5"
         ml="10"
+        p="3"
+        borderRadius="5"
         flexDirection="column"
         fontStyle="italic"
         fontWeight="light"
         textAlign="justify"
-        color="white.700"
+        color={color}
         variants={variants}
         _hover={{
-          backgroundColor: 'white.200',
+          backgroundColor: hover,
           transition: '.5s',
           cursor: 'pointer',
         }}
