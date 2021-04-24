@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Icon, Text } from '@chakra-ui/react';
 import { IconType } from 'react-icons/lib';
 import { MotionBox } from '../utils/MotionContainers';
@@ -6,7 +6,7 @@ import { variants } from '../utils/motionVariants';
 
 type ProfileInfoProps = {
   icon: IconType;
-  title: string;
+  title: ReactNode | string;
 };
 
 export function ProfileInfo({ icon: as, title }: ProfileInfoProps) {

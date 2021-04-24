@@ -2,8 +2,8 @@ export type Repo = {
   id: number;
   name: string;
   description: string | null;
-  stargazers_count: number;
-  updated_at: Date;
+  stargazers_count: string;
+  updated_at: string;
   html_url: string;
 };
 

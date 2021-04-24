@@ -13,7 +13,15 @@ type UserContextData = {
 const UserContext = createContext({} as UserContextData);
 
 export function UserProvider({ children }: UserProviderProps) {
-  const [githubUser, setGithubUser] = useState<GithubUser>();
+  const [githubUser, setGithubUser] = useState<GithubUser>(() => {
+    const user = localStorage.getItem('@github-search-devs');
+
+    if (user) {
+      return JSON.parse(user);
+    }
+
+    return {};
+  });
 
   return (
     <UserContext.Provider value={{ githubUser, setGithubUser }}>{children}</UserContext.Provider>

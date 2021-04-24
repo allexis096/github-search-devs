@@ -14,48 +14,15 @@ import { Repository } from '../components/Repository';
 import { MotionBox, MotionImage, MotionText } from '../utils/MotionContainers';
 import { Button } from '@chakra-ui/button';
 import { variants } from '../utils/motionVariants';
+import { useUser } from '../hooks/user';
+import { formatDistance } from 'date-fns';
+import { Link } from '@chakra-ui/layout';
 
 export function Profile() {
+  const {
+    githubUser: { user },
+  } = useUser();
   const history = useHistory();
-
-  const arr = [
-    {
-      repository: {
-        name: 'Repository Name',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt congue ligula in rutrum. Morbi nec lacus condimentum, hendrerit mi eu, feugiat.',
-        stars: '100 stars',
-        date: 'Updated 30 days ago',
-      },
-    },
-    {
-      repository: {
-        name: 'Repository Name',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt congue ligula in rutrum. Morbi nec lacus condimentum, hendrerit mi eu, feugiat.',
-        stars: '100 stars',
-        date: 'Updated 30 days ago',
-      },
-    },
-    {
-      repository: {
-        name: 'Repository Name',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt congue ligula in rutrum. Morbi nec lacus condimentum, hendrerit mi eu, feugiat.',
-        stars: '100 stars',
-        date: 'Updated 30 days ago',
-      },
-    },
-    {
-      repository: {
-        name: 'Repository Name',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt congue ligula in rutrum. Morbi nec lacus condimentum, hendrerit mi eu, feugiat.',
-        stars: '100 stars',
-        date: 'Updated 30 days ago',
-      },
-    },
-  ];
 
   function handleBack(event: FormEvent) {
     event.preventDefault();
@@ -87,7 +54,9 @@ export function Profile() {
           justifyContent="center"
           variants={variants}
         >
-          <MotionImage src="http://github.com/allexis096.png" w="175" h="175" variants={variants} />
+          <Link href={`https://github.com/${user.login}`} isExternal>
+            <MotionImage src={user.avatar_url} w="175" h="175" variants={variants} />
+          </Link>
         </MotionBox>
 
         <MotionBox p="4">
@@ -98,7 +67,9 @@ export function Profile() {
             fontStyle="italic"
             variants={variants}
           >
-            Allexis Figueiredo
+            <Link href={`https://github.com/${user.login}`} isExternal>
+              {user.name}
+            </Link>
           </MotionText>
           <MotionText
             fontSize="large"
@@ -107,7 +78,7 @@ export function Profile() {
             fontStyle="italic"
             variants={variants}
           >
-            @allexis096
+            {`@${user.login}`}
           </MotionText>
 
           <MotionText
@@ -117,22 +88,41 @@ export function Profile() {
             color="white.500"
             variants={variants}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt congue ligula in
-            rutrum. Morbi nec lacus condimentum, hendrerit mi eu, feugiat.
+            {user.bio}
           </MotionText>
 
-          <MotionBox display="flex" variants={variants}>
-            <ProfileStats icon={MdPeopleOutline} title="200 followers" />
-            <ProfileStats icon={AiOutlineHeart} title="200 following" />
-            <ProfileStats icon={IoIosStarOutline} title="200 stars" />
+          <MotionBox display="flex" justifyContent="center" variants={variants}>
+            <ProfileStats icon={MdPeopleOutline} title={`${user.followers} followers`} />
+            <ProfileStats icon={AiOutlineHeart} title={`${user.following} following`} />
+            <ProfileStats icon={IoIosStarOutline} title={`${user.starred} stars`} />
           </MotionBox>
 
           <MotionBox display="flex" flexDirection="column" variants={variants}>
-            <ProfileInfo icon={BiBuilding} title="organization" />
-            <ProfileInfo icon={GoLocation} title="location" />
-            <ProfileInfo icon={AiOutlineMail} title="email" />
-            <ProfileInfo icon={AiOutlineLink} title="www.mywebsite.com" />
-            <ProfileInfo icon={FiTwitter} title="@myTwitter" />
+            <ProfileInfo icon={BiBuilding} title={user.company ?? 'Sem companhia'} />
+            <ProfileInfo icon={GoLocation} title={user.location ?? 'Não cadastrado'} />
+            <ProfileInfo icon={AiOutlineMail} title={user.email ?? 'Sem e-mail'} />
+            <ProfileInfo
+              icon={AiOutlineLink}
+              title={
+                user.blog.length === 0 ? (
+                  'Sem site'
+                ) : (
+                  <Link href={user.blog} isExternal>
+                    {user.blog}
+                  </Link>
+                )
+              }
+            />
+            <ProfileInfo
+              icon={FiTwitter}
+              title={
+                (
+                  <Link href={`https://twitter.com/${user.twitter_username}`} isExternal>
+                    {user.twitter_username}
+                  </Link>
+                ) ?? 'Sem twitter'
+              }
+            />
           </MotionBox>
         </MotionBox>
 
@@ -150,9 +140,15 @@ export function Profile() {
         </MotionBox>
       </MotionBox>
 
-      <MotionBox display="flex" flexDirection="column" overflowY="auto" variants={variants}>
-        {arr.map((arrr) => (
-          <Repository key={arrr.repository.name} repository={arrr.repository} />
+      <MotionBox display="flex" w="75%" flexDirection="column" overflowY="auto" variants={variants}>
+        {user.repos.map((repo) => (
+          <Repository
+            key={repo.id}
+            name={repo.name}
+            description={repo.description}
+            stars={repo.stargazers_count}
+            date={formatDistance(new Date(repo.updated_at), new Date(), { addSuffix: true })}
+          />
         ))}
       </MotionBox>
     </MotionBox>

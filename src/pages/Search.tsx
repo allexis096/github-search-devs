@@ -32,9 +32,9 @@ export function Search() {
       const form = document.forms[UNIQUE_FORM];
       const { user } = form;
 
-      const { data: dataUser } = await api.get<User>(`${user}`);
-      const { data: starred } = await api.get(`${user}/starred`);
-      const { data: repos } = await api.get<Repo[]>(`${user}/repos`);
+      const { data: dataUser } = await api.get<User>(`${user.value}`);
+      const { data: starred } = await api.get(`${user.value}/starred`);
+      const { data: repos } = await api.get<Repo[]>(`${user.value}/repos`);
 
       const newUser: GithubUser = {
         user: {
@@ -66,6 +66,9 @@ export function Search() {
       setGithubUser(newUser);
       setLoading(false);
       setDone(true);
+
+      localStorage.removeItem('@github-search-devs');
+      localStorage.setItem('@github-search-devs', JSON.stringify(newUser));
 
       setTimeout(() => {
         history.push('/profile');
