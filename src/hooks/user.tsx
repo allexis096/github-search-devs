@@ -8,11 +8,15 @@ type UserProviderProps = {
 type UserContextData = {
   githubUser: GithubUser;
   setGithubUser: React.Dispatch<React.SetStateAction<GithubUser>>;
+  isOpen: boolean;
+  handleDrawerOpen: () => void;
+  handleDrawerClose: () => void;
 };
 
 const UserContext = createContext({} as UserContextData);
 
 export function UserProvider({ children }: UserProviderProps) {
+  const [isOpen, setIsOpen] = useState(false);
   const [githubUser, setGithubUser] = useState<GithubUser>(() => {
     const user = localStorage.getItem('@github-search-devs');
 
@@ -23,8 +27,20 @@ export function UserProvider({ children }: UserProviderProps) {
     return {};
   });
 
+  function handleDrawerOpen() {
+    setIsOpen(true);
+  }
+
+  function handleDrawerClose() {
+    setIsOpen(false);
+  }
+
   return (
-    <UserContext.Provider value={{ githubUser, setGithubUser }}>{children}</UserContext.Provider>
+    <UserContext.Provider
+      value={{ githubUser, setGithubUser, handleDrawerOpen, handleDrawerClose, isOpen }}
+    >
+      {children}
+    </UserContext.Provider>
   );
 }
 

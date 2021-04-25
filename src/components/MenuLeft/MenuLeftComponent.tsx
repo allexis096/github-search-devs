@@ -1,5 +1,6 @@
 import React, { FormEvent } from 'react';
 import { Button, Link, useColorModeValue } from '@chakra-ui/react';
+import { useHistory } from 'react-router';
 
 import { AiOutlineHeart, AiOutlineMail, AiOutlineLink } from 'react-icons/ai';
 import { BiBuilding } from 'react-icons/bi';
@@ -8,19 +9,19 @@ import { GoLocation } from 'react-icons/go';
 import { IoIosStarOutline } from 'react-icons/io';
 import { MdPeopleOutline } from 'react-icons/md';
 
-import { ProfileInfo } from './ProfileInfo';
-import { ProfileStats } from './ProfileStats';
+import { ProfileInfo } from '../ProfileInfo';
+import { ProfileStats } from '../ProfileStats';
 
-import { User } from '../types';
-import { MotionBox, MotionImage, MotionText } from '../utils/MotionContainers';
-import { variants } from '../utils/motionVariants';
-import { useHistory } from 'react-router';
+import { User } from '../../types';
+import { MotionBox, MotionImage, MotionText } from '../../utils/MotionContainers';
+import { variants } from '../../utils/motionVariants';
 
-type MenuLeftProps = {
+type MenuLeftComponentProps = {
   user: User;
+  isDrawer?: boolean;
 };
 
-export function MenuLeft({ user }: MenuLeftProps) {
+export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
   const history = useHistory();
   const color = useColorModeValue('white.700', 'white.400');
 
@@ -32,9 +33,9 @@ export function MenuLeft({ user }: MenuLeftProps) {
 
   return (
     <MotionBox
-      display="flex"
+      display={'flex'}
       bg="white.700"
-      w="30%"
+      w={isDrawer ? '100%' : '30%'}
       flexDirection="column"
       justifyContent="space-around"
       variants={variants}
