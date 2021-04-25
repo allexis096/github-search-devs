@@ -3,6 +3,7 @@ import { Icon, Text } from '@chakra-ui/react';
 import { IconType } from 'react-icons/lib';
 import { MotionBox } from '../utils/MotionContainers';
 import { variants } from '../utils/motionVariants';
+import { useUser } from '../hooks/user';
 
 type ProfileInfoProps = {
   icon: IconType;
@@ -10,10 +11,12 @@ type ProfileInfoProps = {
 };
 
 export function ProfileInfo({ icon: as, title }: ProfileInfoProps) {
+  const { isWide } = useUser();
+
   return (
     <MotionBox display="flex" mt="2" mr="2" alignItems="center" variants={variants}>
-      <Icon as={as} fontSize={22} color="white.200" mr="1" />
-      <Text color="white.200" fontWeight="light" fontStyle="italic" fontSize="xl">
+      <Icon as={as} fontSize={isWide ? 22 : 90} color="white.200" mr="1" />
+      <Text color="white.200" fontWeight="light" fontStyle="italic" fontSize={isWide ? 'xl' : 48}>
         {title}
       </Text>
     </MotionBox>

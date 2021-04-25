@@ -15,6 +15,7 @@ import { ProfileStats } from '../ProfileStats';
 import { User } from '../../types';
 import { MotionBox, MotionImage, MotionText } from '../../utils/MotionContainers';
 import { variants } from '../../utils/motionVariants';
+import { useUser } from '../../hooks/user';
 
 type MenuLeftComponentProps = {
   user: User;
@@ -22,6 +23,7 @@ type MenuLeftComponentProps = {
 };
 
 export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
+  const { isWide } = useUser();
   const history = useHistory();
   const color = useColorModeValue('white.700', 'white.400');
 
@@ -38,6 +40,7 @@ export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
       w={isDrawer ? '100%' : '30%'}
       flexDirection="column"
       justifyContent="space-around"
+      fontSize={isWide ? '' : 54}
       variants={variants}
     >
       <MotionBox
@@ -48,13 +51,18 @@ export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
         variants={variants}
       >
         <Link href={`https://github.com/${user.login}`} isExternal>
-          <MotionImage src={user.avatar_url} w="175" h="175" variants={variants} />
+          <MotionImage
+            src={user.avatar_url}
+            w={isWide ? '175' : '300'}
+            h={isWide ? '175' : '300'}
+            variants={variants}
+          />
         </Link>
       </MotionBox>
 
       <MotionBox p="4">
         <MotionText
-          fontSize="x-large"
+          fontSize={isWide ? 'x-large' : '80'}
           color="white.200"
           fontWeight="light"
           fontStyle="italic"
@@ -65,7 +73,7 @@ export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
           </Link>
         </MotionText>
         <MotionText
-          fontSize="large"
+          fontSize={isWide ? 'large' : '80'}
           color="white.200"
           fontWeight="light"
           fontStyle="italic"
@@ -74,17 +82,34 @@ export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
           {`@${user.login}`}
         </MotionText>
 
-        <MotionText fontSize="sm" textAlign="justify" mt="2" color="white.500" variants={variants}>
+        <MotionText
+          fontSize={isWide ? 'sm' : '60'}
+          textAlign="justify"
+          mt="2"
+          color="white.500"
+          variants={variants}
+        >
           {user.bio}
         </MotionText>
 
-        <MotionBox display="flex" justifyContent="center" variants={variants}>
+        <MotionBox
+          mt={isWide ? '' : '20'}
+          mb={isWide ? '' : '10'}
+          display="flex"
+          justifyContent="center"
+          variants={variants}
+        >
           <ProfileStats icon={MdPeopleOutline} name={user.followers} title="followers" />
           <ProfileStats icon={AiOutlineHeart} name={user.following} title="following" />
           <ProfileStats icon={IoIosStarOutline} name={user.starred} title="stars" />
         </MotionBox>
 
-        <MotionBox display="flex" flexDirection="column" variants={variants}>
+        <MotionBox
+          mb={isWide ? '' : '20'}
+          display="flex"
+          flexDirection="column"
+          variants={variants}
+        >
           <ProfileInfo icon={BiBuilding} title={user.company ?? 'Sem companhia'} />
           <ProfileInfo icon={GoLocation} title={user.location ?? 'Não cadastrado'} />
           <ProfileInfo icon={AiOutlineMail} title={user.email ?? 'Sem e-mail'} />
@@ -116,11 +141,14 @@ export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
       <MotionBox display="flex" justifyContent="center" variants={variants}>
         <Button
           mt="-5"
-          w="150px"
+          w={isWide ? '150px' : '300px'}
+          fontSize={isWide ? '' : 54}
           color={color}
           fontStyle="italic"
           fontWeight="light"
           onClick={handleBack}
+          mb={isWide ? '' : '10'}
+          p={isWide ? '' : '10'}
         >
           Voltar
         </Button>

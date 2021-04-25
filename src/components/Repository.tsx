@@ -16,6 +16,7 @@ type RepositoryProps = {
 export function Repository({ name, description, stars, date }: RepositoryProps) {
   const {
     githubUser: { user },
+    isWide,
   } = useUser();
   const color = useColorModeValue('white.700', 'white.400');
   const hover = useColorModeValue('white.400', 'white.700');
@@ -35,6 +36,7 @@ export function Repository({ name, description, stars, date }: RepositoryProps) 
         flexDirection="column"
         fontStyle="italic"
         fontWeight="light"
+        fontSize={isWide ? '16' : '54'}
         textAlign="justify"
         color={color}
         variants={variants}

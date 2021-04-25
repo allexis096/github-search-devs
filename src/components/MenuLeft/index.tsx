@@ -19,7 +19,7 @@ type MenuLeftProps = {
 };
 
 export function MenuLeft({ user }: MenuLeftProps) {
-  const { isOpen, handleDrawerClose } = useUser();
+  const { isOpen, handleDrawerClose, isWide } = useUser();
   const isDrawer = useBreakpointValue({
     base: true,
     lg: false,
@@ -27,11 +27,11 @@ export function MenuLeft({ user }: MenuLeftProps) {
 
   if (isDrawer) {
     return (
-      <Drawer isOpen={isOpen} closeOnEsc placement="left" onClose={handleDrawerClose}>
+      <Drawer isOpen={isOpen} closeOnEsc placement="left" onClose={handleDrawerClose} size="lg">
         <DrawerOverlay>
           <DrawerContent>
-            <DrawerCloseButton mt="6" />
-            <DrawerHeader>User info</DrawerHeader>
+            <DrawerCloseButton fontSize={isWide ? '' : 48} mt="6" />
+            <DrawerHeader fontSize={isWide ? '' : 48}>User info</DrawerHeader>
 
             <DrawerBody>
               <MenuLeftComponent user={user} isDrawer={isDrawer} />

@@ -1,7 +1,6 @@
 import React from 'react';
 import { formatDistance } from 'date-fns';
 import { Icon, IconButton } from '@chakra-ui/react';
-import { useBreakpointValue } from '@chakra-ui/media-query';
 import { RiMenuLine } from 'react-icons/ri';
 
 import { Repository } from '../components/Repository';
@@ -15,12 +14,8 @@ export function Profile() {
   const {
     githubUser: { user },
     handleDrawerOpen,
+    isWide,
   } = useUser();
-
-  const isWide = useBreakpointValue({
-    base: false,
-    lg: true,
-  });
 
   return (
     <MotionBox
@@ -35,7 +30,7 @@ export function Profile() {
         <IconButton
           aria-label="Open Drawer"
           icon={<Icon as={RiMenuLine} />}
-          fontSize={20}
+          fontSize={isWide ? 20 : 54}
           variant="unstyled"
           onClick={() => handleDrawerOpen()}
           position="absolute"

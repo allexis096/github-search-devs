@@ -14,6 +14,7 @@ type ProfileStatsProps = {
 export function ProfileStats({ icon: as, name, title }: ProfileStatsProps) {
   const {
     githubUser: { user },
+    isWide,
   } = useUser();
 
   return (
@@ -24,8 +25,9 @@ export function ProfileStats({ icon: as, name, title }: ProfileStatsProps) {
       alignItems="center"
       justifyContent="center"
       variants={variants}
+      fontSize={isWide ? 18 : 54}
     >
-      <Icon as={as} fontSize={18} color="white.200" mr="1" />
+      <Icon as={as} color="white.200" mr="1" />
       <Link href={`https://github.com/${user.login}?tab=${title}`} isExternal>
         <Text color="white.200" fontWeight="light" fontSize="smaller">
           {`${name} ${title}`}

@@ -9,7 +9,7 @@ import { searchUser } from '../requests';
 
 export function Search() {
   const history = useHistory();
-  const { setGithubUser } = useUser();
+  const { setGithubUser, isWide } = useUser();
   const color = useColorModeValue('white.700', 'white.400');
 
   const [loading, setLoading] = useState(false);
@@ -35,7 +35,7 @@ export function Search() {
       <MotionBox
         display="flex"
         as="form"
-        maxWidth={400}
+        maxWidth={isWide ? 400 : 900}
         w="100%"
         flexDirection="column"
         alignItems="center"
@@ -43,17 +43,26 @@ export function Search() {
         animate="show"
         variants={variants}
       >
-        <MotionText color={color} fontStyle="italic" fontSize="30" variants={variants}>
+        <MotionText
+          color={color}
+          fontStyle="italic"
+          fontSize={isWide ? '30' : '120'}
+          variants={variants}
+        >
           Search Devs
         </MotionText>
-        <MotionBox display="flex" gridGap="1" w="100%" variants={variants}>
+        <MotionBox display="flex" justifyContent="center" gridGap="1" w="100%" variants={variants}>
           <Input
             name="user"
             isInvalid={error.error}
             position="relative"
+            borderColor="white.700"
             errorBorderColor="crimson"
             placeholder="Type the username here..."
             _placeholder={{ fontStyle: 'italic' }}
+            fontSize={isWide ? '18' : '40'}
+            w={isWide ? '400px' : '500px'}
+            h={isWide ? '40px' : '100px'}
           />
           {error.error && (
             <MotionText position="absolute" mt="50px" color="crimson">
@@ -74,7 +83,8 @@ export function Search() {
             }}
             type="submit"
             onClick={handleSubmit}
-            w="100px"
+            w={isWide ? '100px' : '270px'}
+            h={isWide ? 'initial' : '100px'}
           >
             {!done ? (
               <MotionBox
@@ -82,12 +92,13 @@ export function Search() {
                 justifyContent="center"
                 alignItems="center"
                 variants={variants}
+                fontSize={isWide ? '18' : '60'}
               >
-                <Icon as={FiSearch} fontSize="18" marginRight="2" />
+                <Icon as={FiSearch} fontSize={isWide ? '18' : '60'} marginRight="2" />
                 Buscar
               </MotionBox>
             ) : (
-              <Icon as={FiCheck} fontSize="18" />
+              <Icon as={FiCheck} fontSize={isWide ? '18' : '60'} />
             )}
           </Button>
         </MotionBox>
