@@ -15,8 +15,8 @@ export function ProfileInfo({ icon: as, title }: ProfileInfoProps) {
 
   return (
     <MotionBox display="flex" mt="2" mr="2" alignItems="center" variants={variants}>
-      <Icon as={as} fontSize={isWide ? 22 : 90} color="white.200" mr="1" />
-      <Text color="white.200" fontWeight="light" fontStyle="italic" fontSize={isWide ? 'xl' : 48}>
+      <Icon as={as} fontSize={isWide ? 22 : 48} color="white.200" mr="1" />
+      <Text color="white.200" fontWeight="light" fontStyle="italic" fontSize={isWide ? 'xl' : 28}>
         {title}
       </Text>
     </MotionBox>

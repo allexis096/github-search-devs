@@ -25,7 +25,7 @@ export function ProfileStats({ icon: as, name, title }: ProfileStatsProps) {
       alignItems="center"
       justifyContent="center"
       variants={variants}
-      fontSize={isWide ? 18 : 54}
+      fontSize={isWide ? 18 : 30}
     >
       <Icon as={as} color="white.200" mr="1" />
       <Link href={`https://github.com/${user.login}?tab=${title}`} isExternal>

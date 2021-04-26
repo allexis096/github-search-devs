@@ -46,7 +46,7 @@ export function Search() {
         <MotionText
           color={color}
           fontStyle="italic"
-          fontSize={isWide ? '30' : '120'}
+          fontSize={isWide ? '30' : '60'}
           variants={variants}
         >
           Search Devs
@@ -60,13 +60,13 @@ export function Search() {
             errorBorderColor="crimson"
             placeholder="Type the username here..."
             _placeholder={{ fontStyle: 'italic' }}
-            fontSize={isWide ? '18' : '40'}
-            w={isWide ? '400px' : '500px'}
-            h={isWide ? '40px' : '100px'}
+            fontSize={isWide ? '18' : '36'}
+            w={isWide ? '400px' : '400px'}
+            h={isWide ? '40px' : '80px'}
           />
           {error.error && (
             <MotionText position="absolute" mt="50px" color="crimson">
-              {error.message}
+              {isWide && error.message}
             </MotionText>
           )}
           <Button
@@ -84,7 +84,7 @@ export function Search() {
             type="submit"
             onClick={handleSubmit}
             w={isWide ? '100px' : '270px'}
-            h={isWide ? 'initial' : '100px'}
+            h={isWide ? 'initial' : '80px'}
           >
             {!done ? (
               <MotionBox

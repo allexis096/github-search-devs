@@ -30,11 +30,13 @@ export function Profile() {
         <IconButton
           aria-label="Open Drawer"
           icon={<Icon as={RiMenuLine} />}
-          fontSize={isWide ? 20 : 54}
+          fontSize={isWide ? 20 : 46}
           variant="unstyled"
           onClick={() => handleDrawerOpen()}
           position="absolute"
-          left="2"
+          top="15"
+          left="5"
+          zIndex="100"
         />
       )}
 

@@ -36,7 +36,7 @@ export function Repository({ name, description, stars, date }: RepositoryProps) 
         flexDirection="column"
         fontStyle="italic"
         fontWeight="light"
-        fontSize={isWide ? '16' : '54'}
+        fontSize={isWide ? '16' : '32'}
         textAlign="justify"
         color={color}
         variants={variants}

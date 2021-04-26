@@ -40,7 +40,6 @@ export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
       w={isDrawer ? '100%' : '30%'}
       flexDirection="column"
       justifyContent="space-around"
-      fontSize={isWide ? '' : 54}
       variants={variants}
     >
       <MotionBox
@@ -53,8 +52,8 @@ export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
         <Link href={`https://github.com/${user.login}`} isExternal>
           <MotionImage
             src={user.avatar_url}
-            w={isWide ? '175' : '300'}
-            h={isWide ? '175' : '300'}
+            w={isWide ? '175' : '200'}
+            h={isWide ? '175' : '200'}
             variants={variants}
           />
         </Link>
@@ -62,7 +61,7 @@ export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
 
       <MotionBox p="4">
         <MotionText
-          fontSize={isWide ? 'x-large' : '80'}
+          fontSize={isWide ? 'x-large' : '40'}
           color="white.200"
           fontWeight="light"
           fontStyle="italic"
@@ -73,7 +72,7 @@ export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
           </Link>
         </MotionText>
         <MotionText
-          fontSize={isWide ? 'large' : '80'}
+          fontSize={isWide ? 'large' : '40'}
           color="white.200"
           fontWeight="light"
           fontStyle="italic"
@@ -83,7 +82,7 @@ export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
         </MotionText>
 
         <MotionText
-          fontSize={isWide ? 'sm' : '60'}
+          fontSize={isWide ? 'sm' : '32'}
           textAlign="justify"
           mt="2"
           color="white.500"
@@ -93,8 +92,8 @@ export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
         </MotionText>
 
         <MotionBox
-          mt={isWide ? '' : '20'}
-          mb={isWide ? '' : '10'}
+          mt={isWide ? '' : '10'}
+          mb={isWide ? '' : '5'}
           display="flex"
           justifyContent="center"
           variants={variants}
@@ -105,7 +104,7 @@ export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
         </MotionBox>
 
         <MotionBox
-          mb={isWide ? '' : '20'}
+          mb={isWide ? '' : '10'}
           display="flex"
           flexDirection="column"
           variants={variants}
@@ -141,8 +140,8 @@ export function MenuLeftComponent({ user, isDrawer }: MenuLeftComponentProps) {
       <MotionBox display="flex" justifyContent="center" variants={variants}>
         <Button
           mt="-5"
-          w={isWide ? '150px' : '300px'}
-          fontSize={isWide ? '' : 54}
+          w={isWide ? '150px' : '200px'}
+          fontSize={isWide ? '' : 36}
           color={color}
           fontStyle="italic"
           fontWeight="light"

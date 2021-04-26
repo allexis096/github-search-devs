@@ -30,8 +30,8 @@ export function MenuLeft({ user }: MenuLeftProps) {
       <Drawer isOpen={isOpen} closeOnEsc placement="left" onClose={handleDrawerClose} size="lg">
         <DrawerOverlay>
           <DrawerContent>
-            <DrawerCloseButton fontSize={isWide ? '' : 48} mt="6" />
-            <DrawerHeader fontSize={isWide ? '' : 48}>User info</DrawerHeader>
+            <DrawerCloseButton fontSize={isWide ? '' : 32} mt="6" />
+            <DrawerHeader fontSize={isWide ? '' : 32}>User info</DrawerHeader>
 
             <DrawerBody>
               <MenuLeftComponent user={user} isDrawer={isDrawer} />
