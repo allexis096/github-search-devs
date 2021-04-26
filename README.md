@@ -54,6 +54,10 @@
 <p align="center">A challenge created by <a href="https://github.com/devMozao/desafio-reactjs/">Diogo Fonseca</a>, using <a href="https://marvelapp.com/prototype/9b662g7/screen/76185933/handoff">this template.</a>
 </p>
 
+<p align="center">
+  <a href="https://github-search-devs.netlify.app/">Demo of the app</a>
+</p>
+
 ## 🚀 How to run
 
 For clone and run this app, you need to have [Git](https://git-scm.com) and [NodeJs][nodejs] installed in your PC.
